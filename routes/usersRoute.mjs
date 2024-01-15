@@ -1,20 +1,22 @@
 import express from "express";
-const userRouter = express.Router();
+import User from "../modules/user.mjs";
 
-userRouter.get('/:id', (req, res) => {
+const USER_API = express.Router();
+
+USER_API.get('/:id', (req, res) => {
     // Return user object
 })
 
-userRouter.post('/', (req, res) => {
+USER_API.post('/', (req, res) => {
     // create user
 })
 
-userRouter.put('/:id', (req, res) => {
+USER_API.put('/:id', (req, res) => {
     // edit user
 })
 
-userRouter.delete('/:id', (req, res) => {
+USER_API.delete('/:id', (req, res) => {
     // create user
 })
 
-export default userRouter
+export default USER_API

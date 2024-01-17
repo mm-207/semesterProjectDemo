@@ -5,7 +5,6 @@ import USER_API from './routes/usersRoute.mjs'; // This is where we have defined
 const server = express();
 // Selecting a port for the server to use.
 const port = (process.env.PORT || 8080);
-
 server.set('port', port);
 
 // Defining a folder that will contain static files.

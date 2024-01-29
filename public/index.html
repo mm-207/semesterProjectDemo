@@ -9,7 +9,53 @@
 
 
 <body>
-    <h1>Hello Class</h1>
+
+    <div>
+        Name : <input type="text" id="name"><br>
+        Email: <input type="email" id="email"><br />
+        Password: <input type="password" id="pswHash"><br />
+        <button id="createUserButton">Create User</button>
+    </div>
+
+    <script>
+
+
+
+
+        const createUserButton = document.getElementById("createUserButton");
+
+        createUserButton.onclick = async function (e) {
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const pswHash = document.getElementById("pswHash").value;
+
+            const user = { name, email, pswHash };
+
+            const respon = await postTo("/user", user);
+
+
+
+
+        }
+
+
+        async function postTo(url, data) {
+            const header = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            };
+
+
+            const respon = await fetch(url, header);
+            return respon;
+        }
+
+    </script>
+
 </body>
 
 </html>

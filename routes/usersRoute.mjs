@@ -1,13 +1,22 @@
 import express, { response } from "express";
 import User from "../modules/user.mjs";
-import HttpCodes from "../modules/httpErrorCodes.mjs";
+import { HTTPCodes, HTTPMethods } from "../modules/httpConstants.mjs";
+import SuperLogger from "../modules/SuperLogger.mjs";
+
+
 
 
 const USER_API = express.Router();
+USER_API.use(express.json); // This makes it so that express parses all incoming payloads as JSON for this route.
 
 const users = [];
 
-USER_API.get('/:id', (req, res) => {
+
+USER_API.get('/:id', (req, res, next) => {
+
+
+    SuperLogger.log("Trying to get a user with id " + req.params.id);
+    SuperLogger.log("Bananan is good ");
 
     // Tip: All the information you need to get the id part of the request can be found in the documentation 
     // https://expressjs.com/en/guide/routing.html (Route parameters)
@@ -15,6 +24,7 @@ USER_API.get('/:id', (req, res) => {
     /// TODO: 
     // Return user object
 })
+
 
 USER_API.post('/', (req, res, next) => {
 
@@ -36,13 +46,13 @@ USER_API.post('/', (req, res, next) => {
 
         if (!exists) {
             users.push(user);
-            res.status(HttpCodes.SuccesfullRespons.Ok).end();
+            res.status(HTTPCodes.SuccesfullRespons.Ok).end();
         } else {
-            res.status(HttpCodes.ClientSideErrorRespons.BadRequest).end();
+            res.status(HTTPCodes.ClientSideErrorRespons.BadRequest).end();
         }
 
     } else {
-        res.status(HttpCodes.ClientSideErrorRespons.BadRequest).send("Mangler data felt").end();
+        res.status(HTTPCodes.ClientSideErrorRespons.BadRequest).send("Mangler data felt").end();
     }
 
 });

@@ -1,6 +1,9 @@
 import express, { response } from "express";
 import User from "../modules/user.mjs";
 import { HTTPCodes, HTTPMethods } from "../modules/httpConstants.mjs";
+import SuperLogger from "../modules/SuperLogger.mjs";
+
+
 
 
 const USER_API = express.Router();
@@ -11,6 +14,9 @@ const users = [];
 
 USER_API.get('/:id', (req, res, next) => {
 
+
+    SuperLogger.log("Trying to get a user with id " + req.params.id);
+    SuperLogger.log("Bananan is good ");
 
     // Tip: All the information you need to get the id part of the request can be found in the documentation 
     // https://expressjs.com/en/guide/routing.html (Route parameters)

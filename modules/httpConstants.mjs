@@ -18,6 +18,11 @@ class HTTPCodes {
         NotAcceptable: 406
     }
 
+    static ServerErrorRespons = {
+        InternalError: 500,
+        NotImplemented: 501,
+    }
+
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods

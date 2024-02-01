@@ -70,7 +70,7 @@ class SuperLogger {
             return;
         }
 
-        logger.writeToLog(msg);
+        logger.#writeToLog(msg);
     }
 
 
@@ -117,10 +117,12 @@ class SuperLogger {
     }
 
     #writeToLog(msg) {
+
+        msg += "\n";
         console.log(msg);
         ///TODO: The files should be based on current date.
         // ex: 300124.log
-        fs.appendFile("./log.txt", msg, (err) => { });
+        fs.appendFile("./log.txt", msg, { encoding: "utf8" }, (err) => { });
     }
 }
 

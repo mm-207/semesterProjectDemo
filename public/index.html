@@ -19,9 +19,6 @@
 
     <script>
 
-
-
-
         const createUserButton = document.getElementById("createUserButton");
 
         createUserButton.onclick = async function (e) {
@@ -29,16 +26,10 @@
             const name = document.getElementById("name").value;
             const email = document.getElementById("email").value;
             const pswHash = document.getElementById("pswHash").value;
-
             const user = { name, email, pswHash };
-
             const respon = await postTo("/user", user);
 
-
-
-
         }
-
 
         async function postTo(url, data) {
             const header = {
@@ -48,7 +39,6 @@
                 },
                 body: JSON.stringify(data),
             };
-
 
             const respon = await fetch(url, header);
             return respon;

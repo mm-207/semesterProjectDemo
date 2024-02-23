@@ -31,6 +31,7 @@ USER_API.post('/', async (req, res, next) => {
     // https://www.freecodecamp.org/news/javascript-object-destructuring-spread-operator-rest-parameter/
     const { name, email, password } = req.body;
 
+
     if (name != "" && email != "" && password != "") {
         let user = new User();
         user.name = name;
@@ -56,7 +57,7 @@ USER_API.post('/', async (req, res, next) => {
 
 });
 
-USER_API.put('/:id', (req, res) => {
+USER_API.post('/:id', (req, res, next) => {
     /// TODO: Edit user
     const user = new User(); //TODO: The user info comes as part of the request 
     user.save();

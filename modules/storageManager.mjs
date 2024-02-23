@@ -1,10 +1,7 @@
 import pg from "pg"
 import SuperLogger from "./SuperLogger.mjs";
 
-// We are using an enviorment variable to get the db credentials 
-if (process.env.DB_CONNECTIONSTRING == undefined) {
-    throw ("You forgot the db connection string");
-}
+
 
 /// TODO: is the structure / design of the DBManager as good as it could be?
 
@@ -94,13 +91,28 @@ class DBManager {
 
 }
 
+// The following is thre examples of how to get the db connection string from the enviorment variables.
+// They accomplish the same thing but in different ways.
+// It is a judgment call which one is the best. But go for the one you understand the best.
+
+// 1:
+let connectionString = process.env.ENVIORMENT == "local" ? process.env.DB_CONNECTIONSTRING_LOCAL : process.env.DB_CONNECTIONSTRING_PROD;
+
+// 2:
+connectionString = process.env.DB_CONNECTIONSTRING_LOCAL;
+if (process.env.ENVIORMENT != "local") {
+    connectionString = process.env.DB_CONNECTIONSTRING_PROD;
+}
+
+//3: 
+connectionString = process.env["DB_CONNECTIONSTRING_" + process.env.ENVIORMENT.toUpperCase()];
 
 
+// We are using an enviorment variable to get the db credentials 
+if (connectionString == undefined) {
+    throw ("You forgot the db connection string");
+}
 
-
-
-
-
-export default new DBManager(process.env.DB_CONNECTIONSTRING);
+export default new DBManager(connectionString);
 
 //
